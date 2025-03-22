@@ -102,12 +102,7 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
           <Bell size={14} style={{ marginRight: '8px' }} />
           More Actions
         </StyledButton>
-        <div className="display-count">
-          <span>Display</span>
-          <span className="count-badge">{itemsPerPage}</span>
-          <span>results</span>
-        </div>
-        <div className="pagination-controls">
+        <div className="elegant-pagination">
           <StyledButton 
             variant="secondary"
             className="pagination-button"
@@ -116,9 +111,13 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
           >
             <ChevronLeft size={16} />
           </StyledButton>
-          <span className="pagination-info">
-            Page {currentPage} of {totalPages}
-          </span>
+          <div className="pagination-info">
+            <span className="display-text">Showing</span>
+            <span className="count-badge">{itemsPerPage}</span>
+            <span className="display-text">
+              of {totalItems} results (Page {currentPage} of {totalPages})
+            </span>
+          </div>
           <StyledButton 
             variant="secondary"
             className="pagination-button"
