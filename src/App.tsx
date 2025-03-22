@@ -7,8 +7,9 @@ import {
   Network, 
   Activity,
 } from 'lucide-react';
-import MainTable from './components/mainTable';
-import PopupTables from './components/popupTables';
+import StyledButton from './assets/widgets/StyledButton';
+import PopupTables from './components/PopupTables';
+import MainTable from './components/MainTable';
 
 function App() {
   const [activePopup, setActivePopup] = useState(null);
@@ -47,12 +48,20 @@ function App() {
         <p>Leverage existing AI insights to provide sellers and leaders recommendations on which accounts / technologies to focus sales efforts on.</p>
       </div>
 
-      <MainTable 
+      <StyledButton
+        variant="primary"
+        onClick={() => console.log('Create a pitch clicked')}
+        style={{ marginBottom: '16px' }}
+      >
+        Create a pitch for [Equinix Opportunity Name]
+      </StyledButton>
+
+      <MainTable
         openPopup={openPopup}
         renderActionIcon={renderActionIcon}
       />
 
-      <PopupTables 
+      <PopupTables
         activePopup={activePopup}
         selectedRow={selectedRow}
         activeTab={activeTab}
