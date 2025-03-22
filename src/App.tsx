@@ -7,8 +7,8 @@ import {
   Activity,
 } from 'lucide-react';
 import StyledButton from './assets/widgets/StyledButton';
-import PopupTables from './components/PopupTables';
-import MainTable from './components/MainTable';
+import PopupTables from './components/popupTables';
+import MainTable from './components/mainTable';
 
 function App() {
   const [activePopup, setActivePopup] = useState<string | null>(null);
