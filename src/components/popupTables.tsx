@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Cpu, ShoppingCart, Server, RefreshCw, Database, Zap } from 'lucide-react';
+import { Activity, Cpu, ShoppingCart } from 'lucide-react';
 import { accountData, actionsData, mainTableData, opportunityData } from '../data/appConsts';
 import StyledButton from '../assets/widgets/StyledButton';
 

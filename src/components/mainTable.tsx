@@ -1,4 +1,4 @@
-import React, { JSX, useState } from 'react';
+import { JSX, useState } from 'react';
 import { Zap, Database, Bell, CheckCircle, Clock, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { mainTableData } from '../data/appConsts';
 import StyledButton from '../assets/widgets/StyledButton';
