@@ -29,11 +29,6 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
     <div className="table-container">
       <div className="table-header">
         <h2>Next Best Actions</h2>
-        <div className="display-count">
-          <span>Display</span>
-          <span className="count-badge">{itemsPerPage}</span>
-          <span>results</span>
-        </div>
       </div>
       <table className="data-table">
         <thead>
@@ -65,9 +60,6 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
                   <div className="deal-id-display">
                     <Zap size={14} className="icon-left" />
                     <span>Create New</span>
-                    {/* <StyledButton variant="secondary" className="create-new-button">
-                      Create New
-                    </StyledButton> */}
                   </div>
                 ) : (
                   <div className="deal-id-display">
@@ -110,6 +102,11 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
           <Bell size={14} style={{ marginRight: '8px' }} />
           More Actions
         </StyledButton>
+        <div className="display-count">
+          <span>Display</span>
+          <span className="count-badge">{itemsPerPage}</span>
+          <span>results</span>
+        </div>
         <div className="pagination-controls">
           <StyledButton 
             variant="secondary"
