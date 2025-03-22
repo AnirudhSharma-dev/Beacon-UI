@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import './App.css';
 import {
-  RefreshCw, 
-  Shield, 
-  Network, 
+  RefreshCw,
+  Shield,
+  Network,
   Activity,
 } from 'lucide-react';
-import MainTable from './components/mainTable';
-import PopupTables from './components/popupTables';
+import StyledButton from './assets/widgets/StyledButton';
+import PopupTables from './components/PopupTables';
+import MainTable from './components/MainTable';
 
 function App() {
-  const [activePopup, setActivePopup] = useState<string| null>(null);
-  const [selectedRow, setSelectedRow] = useState<number| null>(null);
+  const [activePopup, setActivePopup] = useState<string | null>(null);
+  const [selectedRow, setSelectedRow] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState('account');
 
   const openPopup = (rowId: number, tab: string) => {
@@ -26,7 +27,7 @@ function App() {
   };
 
   const renderActionIcon = (iconType: string) => {
-    switch(iconType) {
+    switch (iconType) {
       case 'security':
         return <Shield className="action-icon" size={16} />;
       case 'network':
@@ -46,12 +47,20 @@ function App() {
         <p>Leverage existing AI insights to provide sellers and leaders recommendations on which accounts / technologies to focus sales efforts on.</p>
       </div>
 
-      <MainTable 
+      <StyledButton
+        variant="primary"
+        onClick={() => console.log('Create a pitch clicked')}
+        style={{ marginBottom: '16px' }}
+      >
+        Create a pitch for [Equinix Opportunity Name]
+      </StyledButton>
+
+      <MainTable
         openPopup={openPopup}
         renderActionIcon={renderActionIcon}
       />
 
-      <PopupTables 
+      <PopupTables
         activePopup={activePopup}
         selectedRow={selectedRow}
         activeTab={activeTab}

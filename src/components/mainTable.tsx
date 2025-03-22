@@ -1,6 +1,7 @@
-import React, { JSX } from 'react';
-import { Zap, Database, Bell, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import React, { JSX, useState } from 'react';
+import { Zap, Database, Bell, CheckCircle, Clock, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { mainTableData } from '../data/appConsts';
+import StyledButton from '../assets/widgets/StyledButton';
 
 interface MainTableProps {
   openPopup: (rowId: number, tab: string) => void;
@@ -8,13 +9,29 @@ interface MainTableProps {
 }
 
 function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  
+  // Calculate pagination
+  const totalItems = mainTableData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = mainTableData.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <div className="table-container">
       <div className="table-header">
         <h2>Next Best Actions</h2>
         <div className="display-count">
           <span>Display</span>
-          <span className="count-badge">10</span>
+          <span className="count-badge">{itemsPerPage}</span>
           <span>results</span>
         </div>
       </div>
@@ -29,10 +46,10 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
           </tr>
         </thead>
         <tbody>
-          {mainTableData.map((row, i) => (
+          {currentData.map((row, i) => (
             <tr key={row.id}>
               <td>
-                <span className="plain-text">{i + 1}</span>
+                <span className="plain-text">{startIndex + i + 1}</span>
               </td>
               <td>
                 <span className="plain-text">{row.name}</span>
@@ -47,7 +64,10 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
                 {row.dealId === "Create New" ? (
                   <div className="deal-id-display">
                     <Zap size={14} className="icon-left" />
-                    Create New
+                    <span>Create New</span>
+                    {/* <StyledButton variant="secondary" className="create-new-button">
+                      Create New
+                    </StyledButton> */}
                   </div>
                 ) : (
                   <div className="deal-id-display">
@@ -86,10 +106,31 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
         </tbody>
       </table>
       <div className="table-footer">
-        <button className="more-actions-button">
-          <Bell size={14} className="icon-left" />
+        <StyledButton className="more-actions-button">
+          <Bell size={14} style={{ marginRight: '8px' }} />
           More Actions
-        </button>
+        </StyledButton>
+        <div className="pagination-controls">
+          <StyledButton 
+            variant="secondary"
+            className="pagination-button"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            <ChevronLeft size={16} />
+          </StyledButton>
+          <span className="pagination-info">
+            Page {currentPage} of {totalPages}
+          </span>
+          <StyledButton 
+            variant="secondary"
+            className="pagination-button"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            <ChevronRight size={16} />
+          </StyledButton>
+        </div>
       </div>
     </div>
   );
