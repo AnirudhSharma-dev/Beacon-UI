@@ -6,7 +6,6 @@ import {
   Network,
   Activity,
 } from 'lucide-react';
-import StyledButton from './assets/widgets/StyledButton';
 import PopupTables from './components/popupTables';
 import MainTable from './components/mainTable';
 
@@ -41,20 +40,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Next Best Actions</h1>
-      <div className="goal-container">
-        <h2>Goal</h2>
-        <p>Leverage existing AI insights to provide sellers and leaders recommendations on which accounts / technologies to focus sales efforts on.</p>
-      </div>
-
-      <StyledButton
-        variant="primary"
-        onClick={() => console.log('Create a pitch clicked')}
-        style={{ marginBottom: '16px' }}
-      >
-        Create a pitch for [Equinix Opportunity Name]
-      </StyledButton>
-
+      
       <MainTable
         openPopup={openPopup}
         renderActionIcon={renderActionIcon}

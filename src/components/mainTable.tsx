@@ -10,7 +10,7 @@ interface MainTableProps {
 
 function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = mainTableData.length;
   
   // Calculate pagination
   const totalItems = mainTableData.length;
@@ -33,11 +33,11 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
       <table className="data-table">
         <thead>
           <tr>
-            <th style={{ width: '50px' }}>Serial No.</th>
+            <th style={{ width: '10px' }}>#</th>
             <th>Account</th>
             <th>Compiling Event</th>
             <th>Existing Deal ID</th>
-            <th></th>
+            <th style={{ width: '75px' }}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -52,19 +52,19 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
               <td>
                 <div className="action-display">
                   {renderActionIcon(row.icon)}
-                  <span>{row.action}</span>
+                  <span style={{marginLeft: "5px"}}>{row.action}</span>
                 </div>
               </td>
               <td>
                 {row.dealId === "Create New" ? (
                   <div className="deal-id-display">
                     <Zap size={14} className="icon-left" />
-                    <span>Create New</span>
+                    <span style={{marginLeft: "5px"}}>Create New</span>
                   </div>
                 ) : (
                   <div className="deal-id-display">
                     <Database size={14} className="icon-left" />
-                    {row.dealId}
+                    <span style={{marginLeft: "5px"}}>{row.dealId}</span>
                   </div>
                 )}
               </td>
@@ -112,10 +112,10 @@ function MainTable({ openPopup, renderActionIcon }: MainTableProps) {
             <ChevronLeft size={16} />
           </StyledButton>
           <div className="pagination-info">
-            <span className="display-text">Showing</span>
+            <span className="display-text">Displaying</span>
             <span className="count-badge">{itemsPerPage}</span>
             <span className="display-text">
-              of {totalItems} results (Page {currentPage} of {totalPages})
+              of {totalItems} items | (Page {currentPage} of {totalPages})
             </span>
           </div>
           <StyledButton 

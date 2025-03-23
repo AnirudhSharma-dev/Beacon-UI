@@ -49,7 +49,7 @@ h1 {
 
 .table-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 15px;
 }
@@ -92,6 +92,8 @@ h1 {
   font-weight: 600;
   color: #555;
   font-size: 14px;
+  border-bottom: 1.5px solid #0d47a1;
+  
 }
 
 .data-table tbody tr:hover {
@@ -127,12 +129,12 @@ h1 {
 
 .next-steps {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 .step-indicators {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .step {
