@@ -18,10 +18,10 @@ type AccountDataItem = {
 };
 
 type ActionsDataItem = {
-  detail: string;
   event: string;
-  amount: string;
-  expansionOption: string;
+  type: string;
+  date: string;
+  summary: string;
 };
 
 type OpportunityDataItem = {
@@ -127,34 +127,41 @@ export const accountData: Record<number, AccountDataItem> = {
 // Sample data for the actions tab - based on "Actions - [Security EA Renewal]" in the image
 export const actionsData: Record<number, ActionsDataItem[]> = {
   1: [
-    { detail: "Duo; ThousandEyes", event: "EA Renewal", amount: "$1,500k", expansionOption: "No Services; Splunk" }
+    {
+      event: 'Document Review',
+      type: 'PDF',
+      date: '2025-03-20',
+      summary: 'Reviewed legal documentation for proposal terms.',
+    },
+    {
+      event: 'Proposal Sent',
+      type: 'Email',
+      date: '2025-03-22',
+      summary: 'Sent pricing and pitch deck to primary contact.',
+    },
+    {
+      event: 'Customer Feedback',
+      type: 'Meeting',
+      date: '2025-03-25',
+      summary: 'Customer provided feedback and requested revisions.',
+    },
   ],
   2: [
-    { detail: "Networking Suite", event: "Initial Install", amount: "$280k", expansionOption: "Security Add-on" }
+    {
+      event: 'NDA Signed',
+      type: 'PDF',
+      date: '2025-03-10',
+      summary: 'Signed mutual NDA with partner company.',
+    },
+    {
+      event: 'Solution Overview Shared',
+      type: 'PPT',
+      date: '2025-03-12',
+      summary: 'Shared architecture and solution roadmap presentation.',
+    },
   ],
-  3: [
-    { detail: "Hardware; Splunk", event: "Refresh", amount: "$350k", expansionOption: "Managed Services" }
-  ],
-  // Other actions for remaining companies
-  4: [
-    { detail: "IoT Platform", event: "Expansion", amount: "$125k", expansionOption: "Edge Computing" }
-  ],
-  5: [
-    { detail: "Healthcare Security", event: "Compliance Update", amount: "$220k", expansionOption: "Cloud Backup" }
-  ],
-  6: [
-    { detail: "Retail Analytics", event: "New Implementation", amount: "$175k", expansionOption: "AI Insights" }
-  ],
-  7: [
-    { detail: "Secondary Location", event: "New Setup", amount: "$95k", expansionOption: "Integration Services" }
-  ],
-  8: [
-    { detail: "Food Safety Tech", event: "Initial Deployment", amount: "$120k", expansionOption: "Analytics Package" }
-  ],
-  9: [
-    { detail: "Primary Infrastructure", event: "Upgrade", amount: "$210k", expansionOption: "Managed Services" }
-  ]
 };
+
 
 // Sample data for the opportunity tab - based on "Opportunity - [Security EA Refresh - 55827996]" in the image
 export const opportunityData: Record<number, OpportunityDataItem> = {
@@ -240,4 +247,104 @@ export const opportunityData: Record<number, OpportunityDataItem> = {
     marketShare: "48%",
     highlights: ["Strategic initiative", "Executive sponsored"]
   }
+};
+
+// ========================
+// More Detail Popup Data
+// ========================
+
+export interface MoreDetailData {
+  dealDetail: {
+    dealId: string;
+    accountName: string;
+    expectedService: string;
+    expectedProduct: string;
+    stage: string;
+    expectedBookDate: string;
+    forecastStatus: string;
+    opportunityOwner: string;
+    accountSite: string;
+  };
+  technologyServices: {
+    id: number;
+    name: string;
+    category: string;
+    product: string;
+    dealId: string;
+    partner: string;
+    quote: string;
+    quoteAmount: string;
+  }[];
+  accountDetail: {
+    owner: string;
+    accountName: string;
+    website: string;
+    phone: string;
+    industry: string;
+    parent: string;
+    verticalTop: string;
+    verticalSub: string;
+    verticalDetail: string;
+    segments: string[];
+  };
+  financials: {
+    avgBookings3Yr: string;
+    installBase: string;
+    whitespaceSolutions: string[];
+  };
+}
+
+export const moreDetailData: Record<number, MoreDetailData> = {
+  1: {
+    dealDetail: {
+      dealId: '99724070',
+      accountName: 'BLUE CROSS AND BLUE SHIELD LA',
+      expectedService: 'USD 150',
+      expectedProduct: 'USD 3,200',
+      stage: '3 - Proposal',
+      expectedBookDate: '5/2/2025',
+      forecastStatus: 'Commit',
+      opportunityOwner: 'tmedine',
+      accountSite: '5255 REITZ AVE, BATON ROUGE, LA, UNITED STATES',
+    },
+    technologyServices: [
+      {
+        id: 1,
+        name: 'TECHNICAL SUPPORT SERVICES - SMART NET TOTAL CARE',
+        category: 'SNTC',
+        product: 'Smart Net Total Care',
+        dealId: '79455534',
+        partner: 'TRANSFORMYX LLC',
+        quote: 'BCBSLA M&S Quote',
+        quoteAmount: '3,347',
+      },
+      {
+        id: 2,
+        name: 'Cisco Compute',
+        category: 'SNTC',
+        product: 'Compute',
+        dealId: '79455534',
+        partner: 'TRANSFORMYX LLC',
+        quote: '—',
+        quoteAmount: '—',
+      },
+    ],
+    accountDetail: {
+      owner: 'Phil Meyers',
+      accountName: 'SIXTEENTH STREET COMMUNITY HEALTH CENTER, INC',
+      website: 'http://www.sschc.org',
+      phone: '(414) 672-1353',
+      industry: 'Specialty outpatient clinics, nec',
+      parent: '—',
+      verticalTop: 'Health Care',
+      verticalSub: 'Providers',
+      verticalDetail: 'Providers',
+      segments: ['Super Group Program Type'],
+    },
+    financials: {
+      avgBookings3Yr: '$450,000',
+      installBase: '$1.2M',
+      whitespaceSolutions: ['Security', 'AI Analytics', 'Edge Compute'],
+    },
+  },
 };

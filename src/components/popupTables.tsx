@@ -1,102 +1,76 @@
-import React from 'react';
-import { Activity, Cpu, ShoppingCart } from 'lucide-react';
-import { accountData, actionsData, mainTableData, opportunityData } from '../data/appConsts';
+import { Cpu, FileText, Eye } from 'lucide-react';
+import { actionsData, mainTableData, opportunityData, moreDetailData } from '../data/appConsts';
 import StyledButton from '../assets/widgets/StyledButton';
+import MoreDetailView from './popups/moreDetailView';
 
 interface PopupTablesProps {
   activePopup: string | null;
   selectedRow: number | null;
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
+  activeTab: 'account' | 'actions' | 'opportunity';
   closePopup: () => void;
 }
 
-function PopupTables({ activePopup, selectedRow, activeTab, setActiveTab, closePopup }: PopupTablesProps) {
-  // Custom tab button style for the tab navigation
-  const tabButtonStyle = (isActive: boolean) => ({
-    position: 'relative',
-    padding: '12px 20px',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    fontSize: '14px',
-    color: isActive ? '#1a73e8' : '#757575',
-    fontWeight: isActive ? 500 : 400,
-    borderBottom: isActive ? '2px solid #1a73e8' : '2px solid transparent',
-  });
-
+function PopupTables({ activePopup, selectedRow, activeTab, closePopup }: PopupTablesProps) {
   return (
     <div>
       {activePopup === 'subTable' && selectedRow !== null && (
         <div className="popup-overlay" onClick={closePopup}>
-          <div className="popup-container" onClick={e => e.stopPropagation()}>
+          <div className="popup-container" onClick={(e) => e.stopPropagation()}>
             <div className="popup-header">
               <h2>
                 {activeTab === 'account' ? (
                   <>
-                    <ShoppingCart size={18} style={{ marginRight: '8px' }} />
-                    Account — [{accountData[selectedRow as keyof typeof accountData]?.name}]
+                    <Eye size={18} style={{ marginRight: '8px' }} />
+                    More Details — Deal #{mainTableData.find(item => item.id === selectedRow)?.dealId || 'None'}
                   </>
                 ) : activeTab === 'actions' ? (
                   <>
-                    <Activity size={18} style={{ marginRight: '8px' }} />
-                    Actions — [{actionsData[selectedRow as keyof typeof actionsData]?.[0]?.event}]
+                    <FileText size={18} style={{ marginRight: '8px' }} />
+                    Documents — {actionsData[selectedRow]?.[0]?.event || '—'}
                   </>
                 ) : (
                   <>
                     <Cpu size={18} style={{ marginRight: '8px' }} />
-                    Opportunity — [{mainTableData.find(item => item.id === selectedRow)?.action} - {mainTableData.find(item => item.id === selectedRow)?.dealId}]
+                    Opportunity — {mainTableData.find(item => item.id === selectedRow)?.action || '—'}
                   </>
                 )}
               </h2>
               <button className="close-button" onClick={closePopup}>×</button>
             </div>
-            
-            <div className="tab-navigation">
-              <button 
-                style={tabButtonStyle(activeTab === 'account') as React.CSSProperties}
-                onClick={() => setActiveTab('account')}
-              >
-                <ShoppingCart size={16} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
-                Account
-              </button>
-              <button 
-                style={tabButtonStyle(activeTab === 'actions') as React.CSSProperties}
-                onClick={() => setActiveTab('actions')}
-              >
-                <Activity size={16} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
-                Actions
-              </button>
-              <button 
-                style={tabButtonStyle(activeTab === 'opportunity') as React.CSSProperties}
-                onClick={() => setActiveTab('opportunity')}
-              >
-                <Cpu size={16} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
-                Opportunity
-              </button>
-            </div>
 
             <div className="tab-content">
-              {/* Account tab content */}
-              {activeTab === 'account' && (
-                /* Account content is unchanged */
-                <div className="account-card">
-                  {/* ... existing account content ... */}
-                </div>
+              {/* Account → More Details */}
+              {activeTab === 'account' && moreDetailData[selectedRow] && (
+                <MoreDetailView data={moreDetailData[selectedRow]} />
               )}
 
-              {/* Actions tab content */}
-              {activeTab === 'actions' && (
-                /* Actions content is unchanged */
+              {/* Actions → Documents */}
+              {activeTab === 'actions' && actionsData[selectedRow] && (
                 <table className="data-table">
-                  {/* ... existing actions content ... */}
+                  <thead>
+                    <tr>
+                      <th>Event</th>
+                      <th>Type</th>
+                      <th>Date</th>
+                      <th>Summary</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {actionsData[selectedRow].map((action, index) => (
+                      <tr key={index}>
+                        <td>{action.event}</td>
+                        <td>{action.type}</td>
+                        <td>{action.date}</td>
+                        <td>{action.summary}</td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
               )}
 
-              {/* Opportunity tab content */}
-              {activeTab === 'opportunity' && (
+              {/* Opportunity → Highlights */}
+              {activeTab === 'opportunity' && opportunityData[selectedRow] && (
                 <div className="opportunity-card">
-                  {/* ... existing opportunity content ... */}
                   <div className="opportunity-highlights">
                     <h4>Take Action Highlights:</h4>
                     <ul>

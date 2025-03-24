@@ -137,31 +137,13 @@ h1 {
   gap: 10px;
 }
 
-.step {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-}
 
-.step-active {
-  background-color: #5c6bc0;
-  color: white;
-}
 
-.step-complete {
-  background-color: #66bb6a;
-  color: white;
-}
 
-.step-pending {
-  background-color: #e0e0e0;
-  color: #757575;
-}
+
+
+
+
 
 .table-footer {
   display: flex;
@@ -506,4 +488,35 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 16px 0;
+}
+
+.tab-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tab-content li {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px 24px;
 }
