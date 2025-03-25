@@ -520,3 +520,34 @@ h1 {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 8px 24px;
 }
+
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+.button-group {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}

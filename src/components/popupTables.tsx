@@ -1,7 +1,8 @@
 import { Cpu, FileText, Eye } from 'lucide-react';
-import { actionsData, mainTableData, opportunityData, moreDetailData } from '../data/appConsts';
+import { actionsData, mainTableData, opportunityData, moreDetailData,documentPopupData } from '../data/appConsts';
 import StyledButton from '../assets/widgets/StyledButton';
 import MoreDetailView from './popups/moreDetailView';
+import DocumentsPopupView from './popups/documentsPopupView';
 
 interface PopupTablesProps {
   activePopup: string | null;
@@ -45,27 +46,8 @@ function PopupTables({ activePopup, selectedRow, activeTab, closePopup }: PopupT
               )}
 
               {/* Actions → Documents */}
-              {activeTab === 'actions' && actionsData[selectedRow] && (
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>Event</th>
-                      <th>Type</th>
-                      <th>Date</th>
-                      <th>Summary</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {actionsData[selectedRow].map((action, index) => (
-                      <tr key={index}>
-                        <td>{action.event}</td>
-                        <td>{action.type}</td>
-                        <td>{action.date}</td>
-                        <td>{action.summary}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              {activeTab === 'actions' && selectedRow !== null && (
+              <DocumentsPopupView data={documentPopupData[selectedRow]} />
               )}
 
               {/* Opportunity → Highlights */}

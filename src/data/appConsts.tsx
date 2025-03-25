@@ -348,3 +348,39 @@ export const moreDetailData: Record<number, MoreDetailData> = {
     },
   },
 };
+
+export interface DocumentPopupData {
+  pitches: string[];
+  proposals: string[];
+  rfps: string[];
+  businessCases: string[];
+  contacts: {
+    name: string;
+    email: string;
+    phone: string;
+  }[];
+  links: {
+    label: string;
+    url: string;
+  }[];
+}
+
+export const documentPopupData: Record<number, DocumentPopupData> = {
+  1: {
+    pitches: ['Q1 Pitch Deck', 'Executive Summary - Jan', 'AI Product Demo Pitch'],
+    proposals: ['SmartNet CX Proposal', 'Onboarding Proposal'],
+    rfps: ['RFP - Southeast CX Project'],
+    businessCases: ['Business Case - AI Edge'],
+    contacts: [
+      { name: 'Jane Doe', email: 'jane.doe@company.com', phone: '123-456-7890' },
+      { name: 'John Smith', email: 'john.smith@company.com', phone: '987-654-3210' },
+    ],
+    links: [
+      { label: 'AI Assisted Overview', url: '#' },
+      { label: 'Escalation Sentiment', url: '#' },
+      { label: 'SFDC Adoption', url: '#' },
+      { label: 'Executive Mosaic', url: '#' },
+    ],
+  },
+};
+
