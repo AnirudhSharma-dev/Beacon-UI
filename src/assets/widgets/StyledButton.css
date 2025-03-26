@@ -1,56 +1,60 @@
 /* StyledButton.css */
 .styled-button {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    color: #2c3e50;
-    background-color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  /* The gradient border effect using pseudo-element */
-  .styled-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 6px;
-    padding: 2px; /* The width of the border */
-    background: linear-gradient(to right, #6a85b6, #bac8e0);
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-  
-  .styled-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(106, 133, 182, 0.15);
-  }
-  
-  .styled-button:active {
-    transform: translateY(0);
-  }
-  
-  /* Primary variant with stronger colors */
-  .styled-button.primary::before {
-    background: linear-gradient(to right, #5172a5, #bac8e0);
-  }
-  
-  /* Secondary variant with more subtle colors */
-  .styled-button.secondary::before {
-    background: linear-gradient(to right, #a4b3c8, #d4dbe9);
-  }
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c3e50;
+  background-color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  border: none;
+  background-clip: padding-box;
+}
+
+/* Gradient Border Wrapper via Pseudo Element */
+.styled-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #6a85b6, #bac8e0);
+  z-index: -1;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+
+/* Variant Modifiers */
+.styled-button.primary::before {
+  background: linear-gradient(to right, #5172a5, #bac8e0);
+}
+
+.styled-button.secondary::before {
+  background: linear-gradient(to right, #a4b3c8, #d4dbe9);
+}
+
+/* Hover Effect */
+.styled-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(106, 133, 182, 0.15);
+}
+
+.styled-button:active {
+  transform: translateY(0);
+}

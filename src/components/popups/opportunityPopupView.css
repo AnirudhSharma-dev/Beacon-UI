@@ -1,0 +1,142 @@
+.opportunity-popup-content {
+    padding: 20px;
+  }
+  
+  .opportunity-popup-content .opportunity-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  
+  .opportunity-popup-content .left-column,
+  .opportunity-popup-content .right-column {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Section Layout */
+  .section {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .section-title-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .section-title-right {
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  /* Section Body */
+  .section-body {
+    flex-grow: 1;
+  }
+  
+  .section-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 12px;
+  }
+  
+  /* List Styling */
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .card-item {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .card-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .card-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #666;
+    font-size: 13px;
+  }
+  
+  .exp {
+    color: #f57c00;
+    font-weight: 600;
+  }
+  
+  .card-right {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .opportunity-popup-content .opportunity-grid {
+      flex-direction: column;
+    }
+  
+    .opportunity-popup-content .left-column,
+    .opportunity-popup-content .right-column {
+      min-width: 100%;
+    }
+  
+    .card-split {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .card-right {
+      align-self: flex-start;
+    }
+  }
+  

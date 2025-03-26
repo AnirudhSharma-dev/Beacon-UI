@@ -1,8 +1,9 @@
 import { Cpu, FileText, Eye } from 'lucide-react';
 import { actionsData, mainTableData, opportunityData, moreDetailData,documentPopupData } from '../data/appConsts';
-import StyledButton from '../assets/widgets/StyledButton';
 import MoreDetailView from './popups/moreDetailView';
 import DocumentsPopupView from './popups/documentsPopupView';
+import OpportunityPopupView from './popups/opportunityPopupView';
+import './popupTables.css';
 
 interface PopupTablesProps {
   activePopup: string | null;
@@ -51,23 +52,10 @@ function PopupTables({ activePopup, selectedRow, activeTab, closePopup }: PopupT
               )}
 
               {/* Opportunity → Highlights */}
-              {activeTab === 'opportunity' && opportunityData[selectedRow] && (
-                <div className="opportunity-card">
-                  <div className="opportunity-highlights">
-                    <h4>Take Action Highlights:</h4>
-                    <ul>
-                      {opportunityData[selectedRow]?.highlights.map((highlight, index) => (
-                        <li key={index}>{highlight}</li>
-                      ))}
-                    </ul>
-                    <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
-                      <StyledButton variant="primary">
-                        Create a pitch for [{opportunityData[selectedRow]?.technology}]
-                      </StyledButton>
-                    </div>
-                  </div>
-                </div>
+              {activeTab === 'opportunity' && selectedRow !== null && (
+              <OpportunityPopupView data={opportunityData[selectedRow]} />
               )}
+
             </div>
           </div>
         </div>

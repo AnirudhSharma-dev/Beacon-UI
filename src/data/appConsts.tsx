@@ -24,15 +24,30 @@ type ActionsDataItem = {
   summary: string;
 };
 
-type OpportunityDataItem = {
-  technology: string;
-  stage: string;
-  dollarTier: string;
-  linked: string;
-  strategic: boolean;
-  marketShare: string;
-  highlights: string[];
-};
+export interface OpportunityPopupData {
+  renewals: {
+    product: string;
+    stage: string;
+    expiry: string;
+    rsm: string;
+  }[];
+  ldos: {
+    name: string;
+    expires: string;
+    hasOpportunity: boolean;
+  }[];
+  eas: {
+    name: string;
+    expiry: string;
+    licenses: string[];
+  }[];
+  surgeEvents: {
+    name: string;
+    link: string;
+  }[];
+  showQuoteIntegration: boolean;
+  showServicesAttach: boolean;
+}
 
 // Apply types to the variables
 export const mainTableData: MainTableDataItem[] = [
@@ -164,90 +179,40 @@ export const actionsData: Record<number, ActionsDataItem[]> = {
 
 
 // Sample data for the opportunity tab - based on "Opportunity - [Security EA Refresh - 55827996]" in the image
-export const opportunityData: Record<number, OpportunityDataItem> = {
+export const opportunityData: Record<number, OpportunityPopupData> = {
   1: {
-    technology: "DUO; NGFW",
-    stage: "5",
-    dollarTier: "$450k",
-    linked: "Yes",
-    strategic: true,
-    marketShare: "65%",
-    highlights: ["Clickable", "Takes AM directly to where they can take actions"]
+    renewals: [
+      { product: 'SmartNet Total Care', stage: 'Stage 2', expiry: '2025-06-30', rsm: 'Nina Patel' },
+      { product: 'Security Ops License', stage: 'Stage 1', expiry: '2025-08-15', rsm: 'Samir Gupta' },
+    ],
+    ldos: [
+      { name: 'Switching Infra', expires: '2025-04-10', hasOpportunity: false },
+      { name: 'Voice Gateway', expires: '2025-04-28', hasOpportunity: true },
+    ],
+    eas: [
+      { name: 'EA for Collaboration', expiry: '2026-01-01', licenses: ['CUCM', 'Webex Meetings'] },
+      { name: 'EA for Security', expiry: '2026-07-30', licenses: ['Umbrella', 'Duo'] },
+    ],
+    surgeEvents: [
+      { name: 'AI Surge Campaign', link: '#' },
+      { name: 'Migration Incentive 2025', link: '#' },
+    ],
+    showQuoteIntegration: true,
+    showServicesAttach: false,
   },
+
   2: {
-    technology: "SD-WAN; WiFi",
-    stage: "3",
-    dollarTier: "$280k",
-    linked: "No",
-    strategic: false,
-    marketShare: "28%",
-    highlights: ["New opportunity", "Competitive situation"]
+    renewals: [],
+    ldos: [
+      { name: 'Wireless Access', expires: '2025-05-05', hasOpportunity: false },
+    ],
+    eas: [],
+    surgeEvents: [],
+    showQuoteIntegration: false,
+    showServicesAttach: true,
   },
-  3: {
-    technology: "Hardware; Splunk",
-    stage: "4",
-    dollarTier: "$350k",
-    linked: "Yes",
-    strategic: true,
-    marketShare: "42%",
-    highlights: ["Refresh cycle", "Budget approved"]
-  },
-  // Other opportunities for remaining companies
-  4: {
-    technology: "IoT; Edge",
-    stage: "2",
-    dollarTier: "$125k",
-    linked: "No",
-    strategic: false,
-    marketShare: "15%",
-    highlights: ["New territory", "Competitive situation"]
-  },
-  5: {
-    technology: "Security; Cloud",
-    stage: "4",
-    dollarTier: "$220k",
-    linked: "Yes",
-    strategic: true,
-    marketShare: "55%",
-    highlights: ["Compliance driven", "Executive support"]
-  },
-  6: {
-    technology: "Analytics; AI",
-    stage: "3",
-    dollarTier: "$175k",
-    linked: "No",
-    strategic: true,
-    marketShare: "30%",
-    highlights: ["Innovation focus", "Competitive situation"]
-  },
-  7: {
-    technology: "Network; IoT",
-    stage: "2",
-    dollarTier: "$95k",
-    linked: "No",
-    strategic: false,
-    marketShare: "22%",
-    highlights: ["Expansion project", "Budget pending"]
-  },
-  8: {
-    technology: "Analytics; Security",
-    stage: "3",
-    dollarTier: "$120k",
-    linked: "Yes",
-    strategic: false,
-    marketShare: "38%",
-    highlights: ["Technology upgrade", "ROI focused"]
-  },
-  9: {
-    technology: "Edge; Security",
-    stage: "4",
-    dollarTier: "$210k",
-    linked: "Yes",
-    strategic: true,
-    marketShare: "48%",
-    highlights: ["Strategic initiative", "Executive sponsored"]
-  }
 };
+
 
 // ========================
 // More Detail Popup Data

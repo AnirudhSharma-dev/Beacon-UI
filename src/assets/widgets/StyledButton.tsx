@@ -6,19 +6,21 @@ interface StyledButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
 }
 
-const StyledButton: React.FC<StyledButtonProps> = ({ 
-  children, 
-  variant = 'primary', 
-  className = '', 
-  ...props 
+const StyledButton: React.FC<StyledButtonProps> = ({
+  children,
+  variant = 'primary',
+  className = '',
+  ...props
 }) => {
   return (
-    <button 
-      className={`styled-button ${variant} ${className}`} 
-      {...props}
-    >
-      {children}
-    </button>
+    <div className={`styled-button-wrapper ${variant}`}>
+      <button
+        className={`styled-button ${className}`}
+        {...props}
+      >
+        {children}
+      </button>
+    </div>
   );
 };
 

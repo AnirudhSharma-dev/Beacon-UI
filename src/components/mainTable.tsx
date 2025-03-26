@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Zap,
   Database,
@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { mainTableData } from '../data/appConsts';
 import StyledButton from '../assets/widgets/StyledButton';
+import './mainTable.css';
 
 interface MainTableProps {
   openPopup: (rowId: number, tab: 'account' | 'actions' | 'opportunity') => void;
@@ -67,58 +68,32 @@ function MainTable({
               <td>{startIndex + i + 1}</td>
               <td>{row.name}</td>
               <td>
-                <div className="action-display">
-                  {renderActionIcon(row.icon)}
-                  <span style={{ marginLeft: '5px' }}>{row.action}</span>
+              <div className="action-display">
+              {React.cloneElement(renderActionIcon(row.icon), { className: 'static-icon' })}
+               <span>{row.action}</span>
+              </div>
+              </td>
+              <td>
+                <div className="deal-id-display no-hover">
+                  {row.dealId === 'Create New' ? (
+                    <>
+                      <Zap size={14} className="icon-left" />
+                      <span>Create New</span>
+                    </>
+                  ) : (
+                    <>
+                      <Database size={14} className="icon-left" />
+                      <span>{row.dealId}</span>
+                    </>
+                  )}
                 </div>
               </td>
               <td>
-                {row.dealId === 'Create New' ? (
-                  <div className="deal-id-display">
-                    <Zap size={14} className="icon-left" />
-                    <span style={{ marginLeft: '5px' }}>Create New</span>
-                  </div>
-                ) : (
-                  <div className="deal-id-display">
-                    <Database size={14} className="icon-left" />
-                    <span style={{ marginLeft: '5px' }}>{row.dealId}</span>
-                  </div>
-                )}
-              </td>
-              <td>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                  <span title="More Details">
-                    <Eye
-                      size={18}
-                      className="action-icon"
-                      style={{ cursor: activePopup ? 'default' : 'pointer' }}
-                      onClick={() => !activePopup && openPopup(row.id, 'account')}
-                    />
-                  </span>
-                  <span title="Documents">
-                    <FileText
-                      size={18}
-                      className="action-icon"
-                      style={{ cursor: activePopup ? 'default' : 'pointer' }}
-                      onClick={() => !activePopup && openPopup(row.id, 'actions')}
-                    />
-                  </span>
-                  <span title="Future Plans">
-                    <CalendarClock
-                      size={18}
-                      className="action-icon"
-                      style={{ cursor: activePopup ? 'default' : 'pointer' }}
-                      onClick={() => !activePopup && openPopup(row.id, 'opportunity')}
-                    />
-                  </span>
-                  <span title="Hide Row">
-                    <EyeOff
-                      size={18}
-                      className="action-icon"
-                      style={{ cursor: 'pointer' }}
-                      onClick={() => onHideRow(row.id)}
-                    />
-                  </span>
+                <div className="action-icons-row">
+                  <Eye size={18} className="action-icon"  onClick={() => !activePopup && openPopup(row.id, 'account')} />
+                  <FileText size={18} className="action-icon"  onClick={() => !activePopup && openPopup(row.id, 'actions')} />
+                  <CalendarClock size={18} className="action-icon"  onClick={() => !activePopup && openPopup(row.id, 'opportunity')} />
+                  <EyeOff size={18} className="action-icon danger"  onClick={() => onHideRow(row.id)} />
                 </div>
               </td>
             </tr>

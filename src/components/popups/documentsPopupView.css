@@ -1,0 +1,92 @@
+.documents-popup-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  /* Section Card */
+  .section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  ul {
+    padding-left: 18px;
+    margin: 0 0 12px 0;
+  }
+  
+  li {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  
+  a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  
+  .contact-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    background-color: #fafafa;
+  }
+  
+  .contact-card p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
+  
+  .doc-list-block {
+    margin-bottom: 16px;
+  }
+  
+  .doc-list-block h4 {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .documents-popup-content {
+      padding: 16px;
+    }
+  
+    .button-group {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .contact-card {
+      padding: 10px;
+    }
+  }
+  

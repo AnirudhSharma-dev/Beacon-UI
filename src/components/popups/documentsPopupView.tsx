@@ -1,6 +1,14 @@
 import React from 'react';
 import { DocumentPopupData } from '../../data/appConsts';
 import StyledButton from '../../assets/widgets/StyledButton';
+import CardSection from '../../components/common/cardSection';
+import {
+  FileText,
+  ClipboardList,
+  Users,
+  Link,
+} from 'lucide-react';
+import './documentsPopupView.css';
 
 interface DocumentsPopupViewProps {
   data: DocumentPopupData;
@@ -11,8 +19,7 @@ const DocumentsPopupView: React.FC<DocumentsPopupViewProps> = ({ data }) => {
     <div className="documents-popup-content">
 
       {/* Pitches Section */}
-      <section className="section">
-        <h3 className="section-title">Pitches</h3>
+      <CardSection title="Pitches" icon={<FileText size={16} />}>
         {data.pitches.length === 0 ? (
           <p>No pitches available.</p>
         ) : (
@@ -22,15 +29,15 @@ const DocumentsPopupView: React.FC<DocumentsPopupViewProps> = ({ data }) => {
             ))}
           </ul>
         )}
-        <StyledButton className="popup-action-btn" onClick={() => alert('Create New Pitch')}>
-          Create New Pitch
-        </StyledButton>
-      </section>
+        <div className="button-group">
+          <StyledButton onClick={() => alert('Create New Pitch')}>
+            Create New Pitch
+          </StyledButton>
+        </div>
+      </CardSection>
 
       {/* Proposals / RFP / Business Case */}
-      <section className="section">
-        <h3 className="section-title">Proposals / RFP / Business Case</h3>
-
+      <CardSection title="Proposals / RFP / Business Case" icon={<ClipboardList size={16} />}>
         <div className="doc-list-block">
           <h4>Proposals:</h4>
           <ul>
@@ -63,11 +70,10 @@ const DocumentsPopupView: React.FC<DocumentsPopupViewProps> = ({ data }) => {
           <StyledButton onClick={() => alert('Create RFP')}>Create RFP</StyledButton>
           <StyledButton onClick={() => alert('Create Business Case')}>Create Business Case</StyledButton>
         </div>
-      </section>
+      </CardSection>
 
       {/* Contact Section */}
-      <section className="section">
-        <h3 className="section-title">Contact</h3>
+      <CardSection title="Contact" icon={<Users size={16} />}>
         {data.contacts.map((contact, idx) => (
           <div key={idx} className="contact-card">
             <p><strong>{contact.name}</strong></p>
@@ -79,17 +85,16 @@ const DocumentsPopupView: React.FC<DocumentsPopupViewProps> = ({ data }) => {
             </div>
           </div>
         ))}
-      </section>
+      </CardSection>
 
       {/* Additional Links */}
-      <section className="section">
-        <h3 className="section-title">Additional Detail and Links</h3>
+      <CardSection title="Additional Detail and Links" icon={<Link size={16} />}>
         <ul>
           {data.links.map((link, idx) => (
             <li key={idx}><a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a></li>
           ))}
         </ul>
-      </section>
+      </CardSection>
 
     </div>
   );
