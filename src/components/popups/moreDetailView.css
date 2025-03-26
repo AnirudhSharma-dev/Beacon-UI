@@ -40,6 +40,16 @@
     font-weight: 600;
     background-color: #f8f8f8;
   }
+
+  .deal-link {
+    color: #1a73e8;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  .deal-link:hover {
+    color: #0d47a1;
+  }
   
   /* Responsive Fix */
   @media (max-width: 768px) {

@@ -18,8 +18,18 @@ const MoreDetailView: React.FC<MoreDetailViewProps> = ({ data }) => {
   return (
     <div className="more-detail-container">
       <CardSection title="Deal Detail" icon={<FileText size={16} />}>
-        <div className="md-grid">
-          <p><strong>Deal ID:</strong> {data.dealDetail.dealId}</p>
+          <div className="md-grid">
+          <p>
+          <strong>Deal ID:</strong>{' '}
+          <a
+            href={``}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="deal-link"
+          >
+          {data.dealDetail.dealId}
+          </a>
+          </p>
           <p><strong>Account Name:</strong> {data.dealDetail.accountName}</p>
           <p><strong>Expected Service:</strong> {data.dealDetail.expectedService}</p>
           <p><strong>Expected Product:</strong> {data.dealDetail.expectedProduct}</p>
