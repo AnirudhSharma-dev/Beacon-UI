@@ -9,9 +9,9 @@ import {
 
 import PopupTables from './components/popupTables';
 import MainTable from './components/mainTable';
-import BasicTable from './assets/widgets/BasicTable';
-import { columns, data } from './data/basicTableConst';
-import { mainTableData } from './data/appConsts';
+// import BasicTable from './assets/widgets/basicTable';
+// import { columns, data } from './data/basicTableConst';
+import MoreActionsPopup from './components/popups/moreActionsPopup';
 
 function App() {
   const [activePopup, setActivePopup] = useState<boolean>(false);
@@ -77,61 +77,17 @@ function App() {
       />
 
       {/* More Actions Popup */}
+      
       {moreActionsOpen && (
-        <div className="popup-overlay" onClick={() => setMoreActionsOpen(false)}>
-          <div className="popup-container" onClick={(e) => e.stopPropagation()}>
-            <div className="popup-header">
-              <h2>More Actions</h2>
-              <button className="close-button" onClick={() => setMoreActionsOpen(false)}>×</button>
-            </div>
-            <div className="tab-content">
-              <h4>Hidden Rows</h4>
-              {hiddenRowIds.length === 0 ? (
-                <p>No rows are hidden.</p>
-              ) : (
-                <ul style={{ paddingLeft: '20px' }}>
-                  {hiddenRowIds.map((id) => {
-                    const row = mainTableData.find(row => row.id === id);
-                    return (
-                      <li key={id} style={{ marginBottom: '6px' }}>
-                        {row?.name || `Row #${id}`}
-                        <button
-                          style={{
-                            marginLeft: '10px',
-                            backgroundColor: '#e8f0fe',
-                            border: '1px solid #ccc',
-                            borderRadius: '4px',
-                            padding: '4px 8px',
-                            fontSize: '12px',
-                            cursor: 'pointer'
-                          }}
-                          onClick={() => setHiddenRowIds(hiddenRowIds.filter(hid => hid !== id))}
-                        >
-                          Unhide
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-
-              {hiddenRowIds.length > 0 && (
-                <div style={{ marginTop: '20px' }}>
-                  <button
-                    className="link-button"
-                    onClick={unhideAllRows}
-                    style={{ fontWeight: 600 }}
-                  >
-                    Unhide All Rows
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <MoreActionsPopup
+          hiddenRowIds={hiddenRowIds}
+          onUnhideRow={(id) => setHiddenRowIds(hiddenRowIds.filter(h => h !== id))}
+          onUnhideAll={unhideAllRows}
+          onClose={() => setMoreActionsOpen(false)}
+        />
       )}
 
-      <BasicTable columns={columns} data={data} />
+      {/* <BasicTable columns={columns} data={data} /> */}
     </div>
   );
 }
